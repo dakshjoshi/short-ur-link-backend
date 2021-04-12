@@ -50,21 +50,15 @@ app.post("/userList", async function (req, res) {
   }
 });
 
-app.post("/userLogin", async function (req, res) {
+app.get("/userLogin/:id", async function (req, res) {
   try {
     //connect to db server
     let connection = await mongodb.connect(URL);
     //Select the db
     let db = connection.db(DB);
-
-    const priorcode = (await db.collection("userList").count()) + 1;
-    req.body.priorCode = priorcode;
-    req.body.Links = [];
-
     //do crud operation
     let loggedInUser = await db.collection("userList").findOne({
-      user_id: req.body.user_id,
-      password: password,
+      user_id: req.params.id,
     });
     //disconnect from db
     await connection.close();

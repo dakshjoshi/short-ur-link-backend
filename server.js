@@ -50,6 +50,47 @@ app.post("/userList", async function (req, res) {
   }
 });
 
+app.post("/userLogin", async function (req, res) {
+  try {
+    //connect to db server
+    let connection = await mongodb.connect(URL);
+    //Select the db
+    let db = connection.db(DB);
+
+    const priorcode = (await db.collection("userList").count()) + 1;
+    req.body.priorCode = priorcode;
+    req.body.Links = [];
+
+    //do crud operation
+    let loggedInUser = await db.collection("userList").findOne({
+      user_id: req.body.user_id,
+      password: password,
+    });
+    //disconnect from db
+    await connection.close();
+
+    res.json("user logged in");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// app.get("/userList/:id", async function (req, res) {
+//   try {
+//     let connection = await mongodb.connect(URL);
+//     let db = connection.db(DB);
+//     let user = await db
+//       .collection("userList")
+//       .findOne({ _id: mongodb.ObjectId(req.params.id) });
+
+//     await connection.close();
+
+//     res.json({ user });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
 app.get("/userList", async function (req, res) {
   try {
     let connection = await mongodb.connect(URL);

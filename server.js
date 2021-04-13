@@ -5,7 +5,7 @@ const mongodb = require("mongodb");
 const bcrypt = require("bcrypt");
 const URL = "mongodb+srv://Daksh:Daksh@08@cluster0.psgym.mongodb.net/test";
 //How to secure the link ?
-const DB = "users";
+const DB = "users"; 
 
 app.use(cors());
 app.use(express.json());

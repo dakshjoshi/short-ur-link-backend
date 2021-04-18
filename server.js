@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const mongodb = require("mongodb");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 require("dotenv").config();
 const URL = process.env.DATABASE_OH_YEAH;
 //How to secure the link ?

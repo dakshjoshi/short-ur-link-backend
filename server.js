@@ -8,6 +8,8 @@ const URL = process.env.DATABASE_OH_YEAH;
 //How to secure the link ?
 const DB = "users";
 
+const PORT = process.env.PORT || 5000
+
 app.use(cors());
 app.use(express.json());
 
@@ -271,4 +273,6 @@ app.put("/workSpace/:id", async function (req, res) {
 //   }
 // });
 
-app.listen(6969);
+app.listen(PORT, ()=> {
+console.log(`Port is running at ${PORT}`)
+});

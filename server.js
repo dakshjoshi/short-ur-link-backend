@@ -6,7 +6,6 @@ const mongodb = require("mongodb");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-const { default: axios } = require("axios");
 require("dotenv").config();
 const URL = process.env.DATABASE_OH_YEAH;
 //How to secure the link ?
